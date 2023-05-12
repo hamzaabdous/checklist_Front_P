@@ -144,21 +144,9 @@
           ></v-img>
 
           <v-list
-            v-if="
-              department == 'TECHNIQUE' ||
-              (department == 'OPERATIONS' && fonction == 'FOREMAN' )
-            "
+            class=""
+            v-if="fonction == 'ADMIN' || fonction == 'SHIFT MANAGER'"
           >
-            <v-list-item-group active-class="activeDrawer" class="itemDrawer">
-              <router-link class="linktext" to="/technique">
-                <div class="itemdrawer">
-                  <v-list-item class="itemd"> Defects </v-list-item>
-                </div>
-              </router-link>
-            </v-list-item-group>
-          </v-list>
-
-          <v-list class="" v-if="fonction == 'ADMIN' ||fonction == 'SHIFT MANAGER'">
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
               <router-link class="linktext" to="/userGestion">
                 <div class="itemdrawer">
@@ -186,7 +174,24 @@
               </router-link>
             </v-list-item-group>
           </v-list>
-          <v-list v-else-if="fonction == 'DRIVER' || fonction != 'CHECKER'" class="foremanandTechnique">
+          <v-list
+            v-else-if="
+              (department == 'TECHNIQUE' && fonction != 'ADMIN') ||
+              (department == 'OPERATIONS' && fonction == 'FOREMAN')
+            "
+          >
+            <v-list-item-group active-class="activeDrawer" class="itemDrawer">
+              <router-link class="linktext" to="/technique">
+                <div class="itemdrawer">
+                  <v-list-item class="itemd"> Defects </v-list-item>
+                </div>
+              </router-link>
+            </v-list-item-group>
+          </v-list>
+          <v-list
+            v-else-if="fonction == 'DRIVER' || fonction == 'CHECKER'"
+            class="foremanandTechnique"
+          >
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
               <router-link class="linktext" to="/Damage">
                 <div class="itemdrawer">
@@ -195,6 +200,7 @@
               </router-link>
             </v-list-item-group>
           </v-list>
+          
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
