@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  # PHP-FPM - Service
+  checklist_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: checklist_frontend
+    restart: unless-stopped
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+    networks:
+      - checklist_front-network
+
+  # NGINX - Service
+  webserver:
+    image: nginx:stable-alpine as production-stage
+    container_name: checklist_frontend_webserver
+    restart: unless-stopped
+    tty: true
+
+    ports:
+      - "9011:80"
+    volumes:
+      - ./:/app
+      - ./docker-files/nginx/conf.d/:/etc/nginx/conf.d/
+
+    networks:
+      - checklist_front-network
+
+
+# Networks
+networks:
+  checklist_front-network:
+    driver: bridge
