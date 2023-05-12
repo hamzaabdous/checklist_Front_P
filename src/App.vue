@@ -146,7 +146,7 @@
           <v-list
             v-if="
               department == 'TECHNIQUE' ||
-              (fonction == 'FOREMAN' )
+              (department == 'OPERATIONS' && fonction == 'FOREMAN' )
             "
           >
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
@@ -181,7 +181,7 @@
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
               <router-link class="linktext" to="/technique">
                 <div class="itemdrawer">
-                  <v-list-item class="itemd"> Technique </v-list-item>
+                  <v-list-item class="itemd"> Defects </v-list-item>
                 </div>
               </router-link>
             </v-list-item-group>
