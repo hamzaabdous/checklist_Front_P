@@ -146,7 +146,7 @@
           <v-list
             v-if="
               department == 'TECHNIQUE' ||
-              (department == 'OPERATIONS' && fonction != 'DRIVER' || fonction != 'CHECKER')
+              (fonction == 'FOREMAN' )
             "
           >
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
@@ -158,7 +158,7 @@
             </v-list-item-group>
           </v-list>
 
-          <v-list class="" v-if="fonction == 'ADMIN' ||fonction != 'SHIFT MANAGER'">
+          <v-list class="" v-if="fonction == 'ADMIN' ||fonction == 'SHIFT MANAGER'">
             <v-list-item-group active-class="activeDrawer" class="itemDrawer">
               <router-link class="linktext" to="/userGestion">
                 <div class="itemdrawer">
